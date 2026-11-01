@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ForensicX | Secure Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f4f7fc;
+      --panel:    #ffffff;
+      --panel-2:  #f0f4f9;
+      --border:   #d5e1ee;
+      --border-2: #bbcee4;
+      --text:     #0f172a;
+      --text-2:   #334155;
+      --text-3:   #64748b;
+      --teal:     #0284c7;
+      --teal-dim: rgba(2, 132, 199, 0.1);
+      --amber:    #d97706;
+      --red:      #dc2626;
+      --red-dim:  rgba(220, 38, 38, 0.1);
+      --green:    #16a34a;
+      --green-dim:rgba(22, 163, 74, 0.1);
+      --mono:     'JetBrains Mono', monospace;
+      --sans:     'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── Brand ── */
+    .brand {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--teal-dim);
+      border: 1px solid var(--teal);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--teal);
+      margin: 0 auto 14px;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+
+    .brand-tagline {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--text-3);
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ── Card ── */
+    .auth-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), transparent 70%);
+    }
+
+    /* ── Tabs ── */
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .auth-tab {
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-3);
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: all .15s;
+      letter-spacing: .02em;
+    }
+
+    .auth-tab.active {
+      color: var(--teal);
+      background: var(--teal-dim);
+    }
+
+    /* ── Form body ── */
+    .auth-body { padding: 28px; }
+
+    .form-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      color: var(--text-3);
+      text-transform: uppercase;
+    }
+
+    .field input {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color .15s;
+      width: 100%;
+    }
+
+    .field input:focus { border-color: var(--teal); }
+    .field input::placeholder { color: var(--text-3); }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ── Button ── */
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: var(--teal);
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background .15s;
+    }
+
+    .btn-primary:hover { background: #0369a1; }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ── Alert ── */
+    .alert {
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      display: none;
+    }
+
+    .alert.error   { background: var(--red-dim);   border: 1px solid rgba(220,38,38,.25);  color: #dc2626; }
+    .alert.success { background: var(--green-dim);  border: 1px solid rgba(22,163,74,.25);  color: #16a34a; }
+    .alert.warning { background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.25); color: #d97706; }
+    .alert.show    { display: block; }
+
+    /* ── Footer note ── */
+    .security-note {
+      text-align: center;
+      margin-top: 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: .06em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .security-note span { color: var(--teal); margin: 0 6px; }
+
+    /* ── Hidden ── */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="brand">
+    <div class="brand-icon">FX</div>
+    <div class="brand-name">ForensicX</div>
+    <span class="brand-tagline">Digital Forensics Investigation Platform</span>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <div class="auth-body">
+
+      <!-- ── Login form ── -->
+      <div id="panel-login">
+        <p class="form-title">Secure Sign In</p>
+        <div id="login-alert" class="alert"></div>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="field">
+            <label for="login-id">Mobile Number or Email</label>
+            <input id="login-id" name="identifier" type="text"
+                   placeholder="9876543210 or user@example.com" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="login-pw">Password</label>
+            <input id="login-pw" name="password" type="password"
+                   placeholder="Enter your password" autocomplete="current-password" required>
+          </div>
+          <button class="btn-primary" type="submit" id="login-btn" style="margin-bottom:12px;">Sign In</button>
+          <button type="button" class="btn-secondary" id="quick-login-btn" onclick="quickInvestigatorLogin()" style="width:100%;padding:10px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;color:#0284c7;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+            <span>⚡</span> Quick Sign In as Investigator (koushik)
+          </button>
+          <p style="text-align:center;font-size:11px;color:var(--text-3);margin-top:10px;font-family:var(--mono);">
+            Investigator: 99240041277@klu.ac.in / Password123!
+          </p>
+        </form>
+      </div>
+
+      <!-- ── Register form ── -->
+      <div id="panel-register" class="hidden">
+        <p class="form-title">Create Account</p>
+        <div id="register-alert" class="alert"></div>
+        <form id="register-form" onsubmit="handleRegister(event)">
+          <div class="field">
+            <label for="reg-name">Full Name</label>
+            <input id="reg-name" name="full_name" type="text"
+                   placeholder="Investigator full name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="reg-mobile">Mobile Number</label>
+            <input id="reg-mobile" name="mobile" type="tel"
+                   placeholder="9876543210 or +919876543210" autocomplete="tel" required>
+            <span class="field-hint">10-digit Indian mobile number</span>
+          </div>
+          <div class="field">
+            <label for="reg-email">Email Address</label>
+            <input id="reg-email" name="email" type="email"
+                   placeholder="investigator@example.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="reg-pw">Password</label>
+            <input id="reg-pw" name="password" type="password"
+                   placeholder="Minimum 8 characters" autocomplete="new-password" required minlength="8">
+          </div>
+          <div class="field">
+            <label for="reg-pw2">Confirm Password</label>
+            <input id="reg-pw2" name="confirm_password" type="password"
+                   placeholder="Repeat password" autocomplete="new-password" required minlength="8">
+          </div>
+          <button class="btn-primary" type="submit" id="register-btn">Create Account</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="security-note">
+    Protected Forensic Environment <span>•</span> Authorized Access Only <span>•</span> SHA-256 Integrity
+  </p>
+
+  <script>
+    // If investigator is already signed in, go straight to the dashboard
+    fetch('/api/auth/me').then(r => {
+      if (r.ok) { window.location.href = '/'; }
+    }).catch(() => {});
+
+    function quickInvestigatorLogin() {
+      const idInput = document.getElementById('login-id');
+      const pwInput = document.getElementById('login-pw');
+      if (idInput && pwInput) {
+        idInput.value = '99240041277@klu.ac.in';
+        pwInput.value = 'Password123!';
+        const form = document.getElementById('login-form');
+        if (form) {
+          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
+      }
+    }
+
+    function switchTab(tab) {
+      document.getElementById('panel-login').classList.toggle('hidden', tab !== 'login');
+      document.getElementById('panel-register').classList.toggle('hidden', tab !== 'register');
+      document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+      document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+      clearAlerts();
+    }
+
+    function clearAlerts() {
+      ['login-alert', 'register-alert'].forEach(id => {
+        const el = document.getElementById(id);
+        el.className = 'alert';
+        el.textContent = '';
+      });
+    }
+
+    function showAlert(id, message, type = 'error') {
+      const el = document.getElementById(id);
+      el.className = `alert ${type} show`;
+      el.textContent = message;
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+      const btn = document.getElementById('login-btn');
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+      clearAlerts();
+      const form = event.target;
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            identifier: form.identifier.value.trim(),
+            password: form.password.value,
+          }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          showAlert('login-alert', 'Authentication successful. Loading dashboard...', 'success');
+          setTimeout(() => { window.location.href = '/'; }, 600);
+        } else {
+          const msg = data.detail || 'Invalid login credentials.';
+          const type = response.status === 423 ? 'warning' : 'error';
+          showAlert('login-alert', msg, type);
+          btn.disabled = false;
+          btn.textContent = 'Sign In';
+        }
+      } catch {
+        showAlert('login-alert', 'Connection error. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    }
+
+    async function handleRegister(event) {
+      event.preventDefault();
+      const btn = document.getElementById('register-btn');
+      btn.disabled = true;
+      btn.textContent = 'Creating account...';
+      clearAlerts();
+      const form = event.target;
+      if (form.password.value !== form.confirm_password.value) {
+        showAlert('register-alert', 'Passwords do not match.');
+        btn.disabled = false;
+        btn.textContent = 'Create Account';
+        return;
+      }
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: form.full_name.value.trim(),
+            mobile: form.mobile.value.trim(),
+            email: form.email.value.trim(),
+            password: form.password.value,
+            confirm_password: form.confirm_password.value,
+          }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          showAlert('register-alert', 'Account created successfully. You can now sign in.', 'success');
+          form.reset();
+          setTimeout(() => switchTab('login'), 1800);
+        } else {
+          showAlert('register-alert', data.detail || 'Registration failed.');
+          btn.disabled = false;
+          btn.textContent = 'Create Account';
+        }
+      } catch {
+        showAlert('register-alert', 'Connection error. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Create Account';
+      }
+    }
+  </script>
+</body>
+</html>

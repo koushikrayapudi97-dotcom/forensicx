@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ForensicX | Digital Forensics Investigation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css?v=redesign-1">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">FX</div>
+        <div class="brand-text">
+          <span class="brand-name">ForensicX</span>
+          <span class="brand-tagline">Trace the Evidence</span>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <span class="nav-section-label">INVESTIGATION</span>
+        <a class="nav-item active" href="#dashboard" data-module="dashboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a class="nav-item" href="#device" data-module="device">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          Devices
+        </a>
+        <a class="nav-item" href="#cases" data-module="cases">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Cases
+        </a>
+        <a class="nav-item" href="#evidence" data-module="evidence">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Evidence
+        </a>
+        <a class="nav-item" href="#acquisition" data-module="acquisition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Acquisition
+        </a>
+
+        <span class="nav-section-label">ANALYSIS</span>
+        <a class="nav-item" href="#analysis" data-module="analysis">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          File Analysis
+        </a>
+        <a class="nav-item" href="#hashes" data-module="hashes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Hash Verify
+        </a>
+        <a class="nav-item" href="#reports" data-module="reports">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Reports
+        </a>
+        <a class="nav-item" href="#ai-investigation" data-module="ai-investigation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          AI Investigation
+        </a>
+        <a class="nav-item" href="#malware" data-module="malware">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Malware Analysis
+        </a>
+        <a class="nav-item" href="#history" data-module="history">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+          History
+        </a>
+
+        <span class="nav-section-label">INTELLIGENCE ENGINE</span>
+        <a class="nav-item" href="#normalization" data-module="normalization">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Evidence Normalization
+        </a>
+        <a class="nav-item" href="#correlations" data-module="correlations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Cross Correlations
+        </a>
+        <a class="nav-item" href="#reliability" data-module="reliability">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          Reliability Scoring
+        </a>
+        <a class="nav-item" href="#graph" data-module="graph">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><line x1="8.5" y1="7.5" x2="10.5" y2="15.5"/><line x1="15.5" y1="7.5" x2="13.5" y2="15.5"/></svg>
+          Relationship Graph
+        </a>
+        <a class="nav-item" href="#timeline" data-module="timeline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Incident Timeline
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip" id="user-chip">
+          <div class="user-avatar">FX</div>
+          <div class="user-info">
+            <strong id="sidebar-username">Investigator</strong>
+            <span id="sidebar-email"></span>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
+        <div class="auth-badge">
+          <div class="auth-dot"></div>
+          <div>
+            <strong>AUTHORIZED ACCESS ONLY</strong>
+            <span>Connect devices with documented investigator authorization only.</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+      <!-- Dynamic module view -->
+      <div id="module-view" class="module-view" hidden></div>
+
+      <!-- Dashboard view -->
+      <section id="dashboard-view" class="module-view">
+
+        <!-- Top bar -->
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">DIGITAL FORENSICS INVESTIGATION REPORT</p>
+            <h1>Evidence Dashboard</h1>
+          </div>
+          <div class="topbar-right">
+            <div class="report-meta-row">
+              <div class="meta-chip">
+                <span class="meta-label">ACTIVE CASE</span>
+                <select id="dashboard-case-select" style="font-size:11px;font-family:var(--mono);padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text-1);cursor:pointer;outline:none;">
+                  <option value="">-- No Case Selected (Start at 0) --</option>
+                </select>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-label">CASE ID</span>
+                <span class="meta-value" id="header-case-id">None</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-label">REPORT ID</span>
+                <span class="meta-value" id="report-id">None</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-label">DATE</span>
+                <span class="meta-value" id="analysis-date">Not Available</span>
+              </div>
+              <div class="meta-chip">
+                <span class="meta-label">INVESTIGATOR</span>
+                <span class="meta-value" id="header-investigator">Not Available</span>
+              </div>
+            </div>
+            <button id="report-button" class="button primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Device status hero -->
+        <div class="hero-card">
+          <div class="hero-status">
+            <div class="status-indicator" id="status-dot"></div>
+            <div>
+              <h2 id="device-state">Checking connection...</h2>
+              <p id="device-message">Reading the local ADB bridge.</p>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button id="detect-button" class="button primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Detect Device
+            </button>
+            <button id="refresh-button" class="button secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="metrics-grid" aria-label="Device summary">
+          <div class="metric-card">
+            <div class="metric-icon metric-icon--teal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/></svg>
+            </div>
+            <div class="metric-body">
+              <strong id="metric-devices">0</strong>
+              <span>Devices</span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon--amber">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16z"/></svg>
+            </div>
+            <div class="metric-body">
+              <strong id="metric-calls">0</strong>
+              <span>Call Logs</span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon--blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="metric-body">
+              <strong id="metric-messages">0</strong>
+              <span>Messages</span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon--green">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="metric-body">
+              <strong id="metric-gps">0</strong>
+              <span>GPS Fixes</span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon--purple" style="background:rgba(147,51,234,.1);color:#9333ea;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="metric-body">
+              <strong id="metric-files">0</strong>
+              <span>Extracted Files</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Info cards -->
+        <div class="info-grid">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-tag">01</span>
+              <h3>Case Information</h3>
+            </div>
+            <table class="info-table"><tbody id="case-info"></tbody></table>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span class="card-tag">02</span>
+              <h3>Device Information</h3>
+            </div>
+            <table class="info-table"><tbody id="device-info-table"></tbody></table>
+          </div>
+        </div>
+
+        <footer class="dashboard-footer">
+          Read-only authorized access <span class="sep">•</span> SHA-256 integrity records <span class="sep">•</span> No security protections bypassed
+        </footer>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Evidence Inspection Modal -->
+  <div id="evidence-inspect-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#ffffff;border-radius:12px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);width:100%;max-width:850px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;border:1px solid #e2e8f0;">
+      <div style="padding:16px 20px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;background:#f8fafc;">
+        <div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#64748b;text-transform:uppercase;">EVIDENCE TRACEABILITY INSPECTOR</span>
+          <h3 id="inspect-modal-title" style="margin:2px 0 0;font-size:16px;color:#0f172a;">Evidence Item Details</h3>
+        </div>
+        <button type="button" class="button secondary" onclick="closeEvidenceModal()" style="padding:4px 12px;font-size:12px;cursor:pointer;">✕ Close</button>
+      </div>
+      <div id="inspect-modal-content" style="padding:20px;overflow-y:auto;flex:1;">
+        Loading evidence details...
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=nav-fix-20261007b"></script>
+  <script>
+    // Load authenticated user info
+    fetch('/api/auth/me').then(r => r.ok ? r.json() : null).then(user => {
+      if (!user) { window.location.href = '/login'; return; }
+      const nameEl = document.getElementById('sidebar-username');
+      const emailEl = document.getElementById('sidebar-email');
+      if (nameEl) nameEl.textContent = user.full_name || 'Investigator';
+      if (emailEl) emailEl.textContent = user.email || '';
+    }).catch(() => { window.location.href = '/login'; });
+
+    async function handleLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/login';
+    }
+  </script>
+</body>
+</html>

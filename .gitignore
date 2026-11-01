@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Forensic data
+evidence/*
+!evidence/.gitkeep
+reports/*
+!reports/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Local database
+forensics.db
+forensics.db-shm
+forensics.db-wal
+
+# Local/system files
+*.pyc
+.DS_Store
+Thumbs.db
